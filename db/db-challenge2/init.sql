@@ -12,15 +12,6 @@ CREATE TABLE `users` (
       PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-CREATE TABLE `users_rooms`(
-    `user_id` int(11) NOT NULL,
-    `room_id` int(11) NOT NULL,
-    `joined_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`user_id`,`room_id`),
-    FOREIGN KEY user_member_key(`user_id`) REFERENCES `users`(`user_id`),
-    FOREIGN KEY room_member_key(`room_id`) REFERENCES `rooms`(`room_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `rooms` (
     `room_id` int(11) NOT NULL AUTO_INCREMENT,
     `created_user_id` int(11) NOT NULL,
@@ -34,8 +25,18 @@ CREATE TABLE `rooms` (
     `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`room_id`),
     FOREIGN KEY user_room_created_key(`created_user_id`) REFERENCES `users`(`user_id`),
-    FOREIGN KEY user_room_updated_key(`updated_user_id`) REFERENCES `users`(`user_id`),
+    FOREIGN KEY user_room_updated_key(`updated_user_id`) REFERENCES `users`(`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+CREATE TABLE `users_rooms`(
+    `user_id` int(11) NOT NULL,
+    `room_id` int(11) NOT NULL,
+    `joined_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`user_id`,`room_id`),
+    FOREIGN KEY user_member_key(`user_id`) REFERENCES `users`(`user_id`),
+    FOREIGN KEY room_member_key(`room_id`) REFERENCES `rooms`(`room_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE `posts` (
     `post_id` int(11) NOT NULL AUTO_INCREMENT,
