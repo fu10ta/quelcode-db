@@ -1,4 +1,4 @@
-INSRET INTO users_rooms
+INSERT INTO users_rooms
     (user_id,room_id,joined_at)
 VALUES
     (1, 1, '2020/04/21 11:26:32'),
