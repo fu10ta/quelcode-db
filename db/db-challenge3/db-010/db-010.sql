@@ -12,4 +12,5 @@ ON p.created_user_id = u.id
 JOIN rooms r
 ON p.room_id = r.id
 WHERE u.is_deleted =0
+AND p.is_deleted = 0
 ORDER BY r.id;
